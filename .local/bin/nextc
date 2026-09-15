@@ -1,0 +1,30 @@
+#!/bin/bash
+
+ARG=$1
+
+case $ARG in
+start) 
+    for i in {mariadb,php-fpm,nginx}
+        do sudo systemctl start $i;done
+;;
+stop)
+    for i in {nginx,php-fpm,mariadb}
+        do sudo systemctl stop $i;done
+;;
+
+enable) 
+    for i in {mariadb,php-fpm,nginx}
+        do sudo systemctl enable $i;done
+;;
+disable) 
+    for i in {nginx,php-fpm,mariadb}
+        do sudo systemctl disable $i;done
+;;
+status)
+    for i in {nginx,php-fpm,mariadb}
+        do sudo systemctl status $i;done
+;;
+*)
+    echo "Lolwhat."
+;;
+esac

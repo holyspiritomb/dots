@@ -1,0 +1,263 @@
+# set modifier
+set $super Mod4
+set $alt Mod1
+set $center move position center
+
+# set default desktop layout (default is tiling)
+# workspace_layout tabbed <stacking|tabbed>
+#workspace_layout tabbed
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+new_window 1pixel
+new_float normal
+
+# Hide borders
+hide_edge_borders none
+
+# set font
+font pango: IBM Plex Sans Condensed,FontAwesome 9
+
+workspace_auto_back_and_forth yes
+
+# Use Mouse+$super to drag floating windows to their wanted position
+floating_modifier $super
+
+# reload the configuration file
+bindsym $alt+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $alt+Shift+r restart
+
+bindsym $super+$alt+n exec i3-new-workspace
+
+#autostart settings
+exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+exec --no-startup-id xsettingsd &
+exec --no-startup-id nitrogen --restore &
+#exec --no-startup-id dbus-launch picom -b --backend glx --experimental-backends
+exec --no-startup-id dbus-launch picom &
+exec --no-startup-id ibus-daemon -drx &
+
+#autostart notification panel items
+# exec --no-startup-id blueman-applet &
+exec --no-startup-id cmst & 
+exec --no-startup-id volumeicon
+
+#autostart conkies
+exec --no-startup-id conky -c /home/spiritomb/conkies/conky_maia
+exec --no-startup-id conky -c /home/spiritomb/conkies/conky1.10_shortcuts_maia
+
+#autostart layout
+# exec ~/load-layout.sh
+# bindsym $super+l exec ~/load-layout.sh
+
+#autostart applications
+#exec --no-startup-id thunderbird &
+# exec --no-startup-id keepassxc
+exec --no-startup-id nextcloud
+#exec --no-startup-id discord
+# exec --no-startup-id vlc &
+
+# start a terminal
+bindsym $super+Return exec alacritty
+
+# start dmenu (a program launcher)
+#bindsym $alt+d exec j4-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
+bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'IBM Plex Sans 9'
+bindsym XF86Search exec rofi -lines 12 -padding 18 -width 60 -location 0 -show filebrowser -sidebar-mode -columns 3 -font 'IBM Plex Sans 9'
+# rofi -show calc -modi calc -no-show-match -no-sort
+#bindsym $alt+z exec --no-startup-id sgtk-menu
+
+# common apps keybinds
+bindsym --release Print exec --no-startup-id scrot 'Pictures/Screenshots/%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
+bindsym $alt+F2 exec firefox-developer-edition
+bindsym XF86Explorer exec caja
+# bindsym XF86HomePage exec firefox-developer-edition
+bindsym $alt+F3 exec caja
+bindsym $alt+Shift+k exec notify-send 'choose a window to force close' && exec urxvt -e xkill
+# bindsym XF86Mail exec thunderbird
+
+
+#change volume
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+; exec notify-send "volume up"
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-; exec notify-send "volume down"
+bindsym XF86AudioMute exec amixer set Master toggle; exec notify-send "mute toggled"
+bindsym XF86Tools exec pavucontrol-qt
+
+
+#brightness control
+#bindsym XF86MonBrightnessUp exec brightnessctl s +10%;exec notify-send "brightness up"
+#bindsym XF86MonBrightnessDown exec brightnessctl s 10%-; exec notify-send "brightness down"
+#bindsym Shift+F3 exec xbacklight -set 0; exec notify-send "Minimum brightness"
+
+
+# music control
+#bindsym XF86AudioNext exec mpc next
+#bindsym XF86AudioPrev exec mpc prev
+#bindsym XF86AudioPlay exec mpc toggle
+#bindsym XF86AudioStop exec mpc stop
+
+# kill focused window
+bindsym $alt+F4 kill
+
+# change focus
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+
+# move focused window
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+bindsym $super+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $super+h split h;exec notify-send 'tile horizontally'
+
+# split in vertical orientation
+bindsym $super+v split v;exec notify-send 'tile vertically'
+
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $super+s layout stacking; exec notify-send 'stacking layout'
+bindsym $super+w layout tabbed; exec notify-send 'tabbed layout'
+bindsym $super+e layout toggle split; exec notify-send 'toggle split layout direction'
+
+
+# enter fullscreen mode for the focused container
+bindsym $super+f fullscreen toggle; exec notify-send "fullscreen toggle"
+
+# toggle tiling / floating
+bindsym $super+space floating toggle; exec notify-send "floating toggle"
+
+# change focus between tiling / floating windows
+bindsym $super+Shift+space focus mode_toggle; exec notify-send "focus changed"
+
+# switch to workspace
+bindsym $super+Control+Right workspace next
+bindsym $super+Control+Left workspace prev
+bindsym $super+1 workspace 1
+bindsym $super+2 workspace 2
+bindsym $super+3 workspace 3
+bindsym $super+4 workspace 4
+bindsym $super+5 workspace 5
+bindsym $super+6 workspace 6
+bindsym $super+7 workspace 7
+bindsym $super+8 workspace 8
+bindsym $super+9 workspace 9
+
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1
+bindsym $super+Shift+2 move container to workspace 2
+bindsym $super+Shift+3 move container to workspace 3
+bindsym $super+Shift+4 move container to workspace 4
+bindsym $super+Shift+5 move container to workspace 5
+bindsym $super+Shift+6 move container to workspace 6
+bindsym $super+Shift+7 move container to workspace 7
+bindsym $super+Shift+8 move container to workspace 8
+bindsym $super+Shift+9 move container to workspace 9
+
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $super+Shift+r restart
+
+# exit i3
+bindsym $alt+Shift+e exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Return mode "default"
+}
+bindsym $super+r mode "resize"
+
+# panel
+bar {
+        colors {
+        background #2f343f
+        statusline #2f343f
+        separator #4b5262
+
+        # colour of border, background, and text
+        focused_workspace       #2f343f #bf616a #d8dee8
+        active_workspace        #2f343f #2f343f #d8dee8
+        inactive_workspace      #2f343f #2f343f #d8dee8
+        urgent_workspace        #2f343f #ebcb8b #2f343f
+    }
+        status_command py3status
+}
+
+# window rules, you can find the window class using xprop
+for_window [class=".*"] border pixel 1
+assign [class=calibre-gui|calibre] 3
+for_window [instance="calibre-ebook-edit"] 4
+for_window [class=Transmission-gtk|UXTerm|uxterm|URxvt|kitty] floating enable
+for_window [instance="xterm"] floating enable
+for_window [class=Viewnior|Engrampa|feh|Audacious|File-roller|Lxappearance|Lxtask|Lxrandr|Arandr|Pavucontrol|Msgcompose|Places|Library|calibre-ebook-viewer|Calibre-ebook-viewer|atril|Atril|vlc|Caja|Vlc|GParted] floating enable
+for_window [instance="calibre-ebook-viewer"] floating enable $center
+for_window [class=URxvt|Firefox|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Lxappearance|calibre-ebook-viewer|Vlc|vlc] focus
+for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr|blueman-manager|Blueman-manager] focus
+for_window [title="Bluetooth Devices"] floating enable $center
+for_window [title="Keyman Configuration"] floating enable focus
+for_window [title="Download Keyman keyboards"] floating enable $center
+for_window [title="About Mozilla Firefox"] floating enable $center
+for_window [title="About Mozilla Firefox Developer Edition"] floating enable $center
+for_window [class="System-config-printer.py"] floating enable $center
+for_window [class="zoom" title="Settings"] floating enable $center
+for_window [class="zoom" title="Zoom Meeting"] floating disable
+for_window [class="zoom" title="Zoom"] floating disable
+for_window [class="zoom" title="Zoom - Free Account"] floating enable
+for_window [class="mediainfo-gui"] floating enable $center
+for_window [class="Gedit"] floating enable
+for_window [class="calibre" instance="calibre-gui" title="Edit metadata.*"] floating enable $center
+for_window [class="calibre" instance="calibre-gui" title="Edit Field"] floating enable $center
+for_window [class="calibre" instance="calibre-gui" title="Downloading metadata.*"] floating enable $center
+for_window [class="calibre" instance="calibre-gui" title="Schedule news download*"] floating enable $center
+for_window [class="calibre" instance="calibre-gui" title="calibre - Preferences"] floating enable $center
+
+
+
+# colour of border, background, text, indicator, and child_border
+client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
+#client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+#client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+#client.background           #2f343f
+
+# Set inner/outer gaps
+gaps inner 10
+gaps outer -2
+
+# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+# gaps inner|outer current|all set|plus|minus <px>
+# gaps inner all set 5
+# gaps outer all plus 5
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+smart_gaps on
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders on
+
+set $mode_system System (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    #bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $super+$alt+x mode "$mode_system"
+# exec --no-startup-id /opt/redact-bin/redact --no-sandbox
+exec --no-startup-id calibre &

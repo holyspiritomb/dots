@@ -1,0 +1,27 @@
+configuration {
+	modi: "window,drun,run,filebrowser,rofiemoji:rofimoji --clipboarder xclip --action clipboard --files /home/spiritomb/.config/rofi/oldenglish.csv emojis_smileys_emotion emojis_people_body emojis_animals_nature emojis_food_drink emojis_objects emojis_travel_places emojis_symbols emojis_flags runic,calc,power-menu:rofi-power-menu --choices shutdown/reboot";
+	font: "Segoe UI 9";
+/*	location: 0;*/
+/*	yoffset: 0;*/
+/*	xoffset: 0;*/
+/*	fixed-num-lines: true;*/
+	show-icons: true;
+	icon-theme: "breeze-dark";
+	sidebar-mode: true;
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  listview {
+      columns: 3;
+      fixed-columns: true;
+   }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+  window {
+      transparency: "real";
+  }
+}
+@theme "Arc-Dark-Mod.rasi"

@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+LC_ALL=C find "/usr/lib/perl5/5.42" -type f -exec pacman -Qqo {} + |& sed -n 's/^error: No package owns \(.*\)$/\1/p'
