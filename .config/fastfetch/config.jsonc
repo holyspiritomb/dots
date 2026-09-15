@@ -1,0 +1,55 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "display": {
+        "size": {
+            "maxPrefix": "MB",
+            "ndigits": 0
+        }
+    },
+    "modules": [
+        "title",
+        "separator",
+        "os",
+        "host",
+        {
+            "type": "kernel",
+            "format": "{release}"
+        },
+        "uptime",
+        {
+            "type": "packages",
+            "format": "{2} (pacman), {15} (flatpak-user)"
+        },
+        "shell",
+        {
+            "type": "display",
+            "compactType": "original",
+            "key": "Resolution"
+        },
+        "de",
+        "wm",
+        "wmtheme",
+        {
+            "type": "terminalfont",
+            "format": "{/name}{-}{/}{name}{?size} {size}{?}"
+        },
+        // "cpu",
+        {
+            "type": "cpu",
+            "format": "{1} ({3}) @ {7}"
+        },
+        {
+            "type": "gpu",
+            "key": "GPU",
+            "format": "{2}, {6}",
+            "driverSpecific": true,
+            "detectionMethod": "vulkan"
+        },
+        {
+            "type": "memory",
+            "format": "{} / {}"
+        },
+        "break",
+        "colors"
+    ]
+}
